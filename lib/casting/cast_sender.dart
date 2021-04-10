@@ -113,7 +113,10 @@ class CastSender extends Object {
   }
 
   Future<bool> disconnect() async {
-    _connectionChannel?.sendMessage({ 'type': 'CLOSE',});
+    stop();
+    _connectionChannel?.sendMessage({
+      'type': 'CLOSE',
+    });
     await _socket?.destroy();
     _dispose();
     connectionDidClose = true;
